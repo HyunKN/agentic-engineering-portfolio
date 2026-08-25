@@ -1,0 +1,115 @@
+name: AEP Experiment
+description: Baseline, ablation, holdout 또는 재현 실험을 사전에 고정합니다.
+title: "[EXPERIMENT] "
+body:
+  - type: input
+    id: experiment_id
+    attributes:
+      label: Experiment ID
+      placeholder: LT-EXP-001
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project
+      options:
+        - LocalTwin AEP
+        - Landmark Assistant AEP
+    validations:
+      required: true
+
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis
+      description: 무엇이 어떤 metric을 왜 개선할 것으로 예상하는지 씁니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: task_set
+    attributes:
+      label: Task set and fixture
+      placeholder: |
+        Task IDs:
+        Starting commits:
+        Fixture versions:
+        Development / holdout split:
+    validations:
+      required: true
+
+  - type: textarea
+    id: configurations
+    attributes:
+      label: Configurations and controls
+      placeholder: |
+        Baseline:
+        Treatment:
+        Fixed model:
+        Tool budget:
+        Timeout / retries:
+        Repetitions:
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics and evaluators
+      placeholder: |
+        Primary metrics:
+        Secondary metrics:
+        Deterministic evaluators:
+        Human rubric:
+        Statistical summary:
+    validations:
+      required: true
+
+  - type: textarea
+    id: leakage
+    attributes:
+      label: Leakage and forbidden context
+      description: 정답 patch, future history, pristine fixture와 evaluator 접근 차단을 적습니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: budget
+    attributes:
+      label: Cost, resource, and approval budget
+      placeholder: |
+        LLM budget:
+        GPU / compute budget:
+        Human approval points:
+        Stop conditions:
+    validations:
+      required: true
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Artifacts to preserve
+      placeholder: |
+        - raw traces
+        - patches
+        - evaluator results
+        - token / latency / cost
+        - failure cases
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: preregistration
+    attributes:
+      label: Pre-run checklist
+      options:
+        - label: 실행 전에 hypothesis, Task, metric과 stop condition을 고정했습니다.
+          required: true
+        - label: 실패하거나 중단된 run도 삭제하지 않습니다.
+          required: true
+        - label: 다른 프로젝트의 점수와 합산하거나 직접 비교하지 않습니다.
+          required: true
+        - label: 실제 측정과 추정값을 구분합니다.
+          required: true

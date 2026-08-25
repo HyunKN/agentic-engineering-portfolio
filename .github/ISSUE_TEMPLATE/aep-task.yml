@@ -1,0 +1,127 @@
+name: AEP Task
+description: 구현, 조사, 평가 또는 문서 작업을 검증 가능한 단위로 정의합니다.
+title: "[TASK] "
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      description: FND-###, LT-###, LA-### 또는 PF-### 형식을 사용합니다.
+      placeholder: LT-INF-001
+    validations:
+      required: true
+
+  - type: dropdown
+    id: track
+    attributes:
+      label: Track
+      options:
+        - Foundation
+        - LocalTwin AEP
+        - Landmark Assistant AEP
+        - Portfolio
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Feature
+        - Experiment
+        - Evaluation
+        - Research
+        - Documentation
+        - Bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: 이 Issue가 끝났을 때 달라져야 하는 상태를 작성합니다.
+      placeholder: 결과 상태와 사용자 또는 실험에 미치는 영향을 적어주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Starting evidence
+      description: 관련 repository, commit, 문서, 실패 로그 또는 metric을 적습니다. Secret 값은 넣지 마세요.
+      placeholder: |
+        Repository:
+        Starting commit:
+        Reproduction:
+        Related documents:
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      placeholder: |
+        In scope:
+        -
+
+        Out of scope:
+        -
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: 구현 방법이 아니라 성공 상태를 checklist로 작성합니다.
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      placeholder: |
+        Automated:
+        -
+
+        Manual:
+        -
+
+        Evidence to preserve:
+        -
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and blockers
+      description: Parent Issue, 선행 Issue, 필요한 결정·자료·권한을 연결합니다.
+      placeholder: "Depends on #..."
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk and approval boundary
+      description: Write Tool, network, secret, 개인정보, model/data, 비용과 Human approval 경계를 적습니다.
+
+  - type: checkboxes
+    id: ready
+    attributes:
+      label: Ready checklist
+      options:
+        - label: Goal과 acceptance criteria가 정답 구현을 누설하지 않습니다.
+          required: true
+        - label: 관련 없는 변경과 비목표를 구분했습니다.
+          required: true
+        - label: 검증 명령 또는 human check를 정의했습니다.
+          required: true
+        - label: Secret, 개인정보와 외부 side effect 위험을 확인했습니다.
+          required: true
