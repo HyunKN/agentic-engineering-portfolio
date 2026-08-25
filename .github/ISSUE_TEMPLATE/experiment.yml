@@ -1,12 +1,21 @@
 name: AEP Experiment
 description: Baseline, ablation, holdout 또는 재현 실험을 사전에 고정합니다.
-title: "[EXPERIMENT] "
+title: "[M0-000][EXP-ID] "
 body:
   - type: input
     id: experiment_id
     attributes:
       label: Experiment ID
       placeholder: LT-EXP-001
+    validations:
+      required: true
+
+  - type: input
+    id: execution_order
+    attributes:
+      label: Phase와 실행 순서
+      description: 같은 Priority에서는 이 번호가 작은 실험부터 실행합니다. 10 단위 간격을 둡니다.
+      placeholder: M2-010
     validations:
       required: true
 

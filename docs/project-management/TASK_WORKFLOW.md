@@ -72,13 +72,16 @@ Done
 | Field | 값 |
 | --- | --- |
 | Track | Foundation, LocalTwin AEP, Landmark AEP, Portfolio |
-| Phase | Foundation, MVP, Baseline, Retrieval, Routing, Workflow, Evaluation, Release |
-| Priority | P0, P1, P2 |
+| Phase | M0, M1, M2, M3, M4, M5 |
+| Priority | P0, P1, P2, P3 |
+| Order | 같은 Phase·Priority 안의 실행 순서: 010, 020, 030, ... |
 | Size | S, M, L |
 | Evidence | None, Partial, Verified |
 | Target | LT, LA, Portfolio |
 
 `Status`는 Project field로만 관리하고 `status:*` label을 중복 생성하지 않는다.
+
+`Priority`는 중요도와 긴급도이고 `Order`는 실제 실행 순서다. Project view는 `Phase -> Priority -> Order` 순으로 정렬한다. 순서 사이에는 10 단위 간격을 두고 중간 작업은 `015`처럼 삽입한다. hard dependency는 숫자만으로 추론하지 않고 native dependency 또는 `Depends on #...`로도 연결한다.
 
 ## 4. Issue 계층
 
@@ -89,7 +92,7 @@ Done
 예:
 
 ```text
-[EPIC] LT AEP baseline을 재현 가능하게 만든다
+[M1] LocalTwin 전용 AEP 최소 실행 기반
 ```
 
 Sub-issue 후보:
@@ -105,7 +108,7 @@ Sub-issue 후보:
 독립적으로 완료·검증할 수 있는 변경 단위다. 가능하면 S 또는 M 크기로 유지한다.
 
 ```text
-[LT] LT-01 fixture builder 구현
+[M1-020][LT-INF-002] localtwin-aep 저장소 scaffold
 ```
 
 ### Checklist
@@ -133,6 +136,20 @@ checklist가 서로 다른 owner, 별도 release 또는 독립 acceptance를 가
 
 기존 benchmark의 `LT-01`, `LA-01` ID를 유지한다. 구현 infrastructure는 `LT-INF-###`, `LA-INF-###`처럼 구분할 수 있다.
 
+### Issue 제목과 실행 순서
+
+```text
+Parent: [M1] LocalTwin 전용 AEP 최소 실행 기반
+Work:   [M1-010][LT-INF-001] LocalTwin AEP 범위와 Trust Boundary 정의
+Experiment: [M2-010][LT-EXP-001] Retrieval baseline 측정
+```
+
+- 첫 번째 대괄호는 `Phase-Order`이며 실행 순서를 나타낸다.
+- 두 번째 대괄호는 추적과 문서 연결을 위한 Task ID다.
+- 같은 `Priority`에서는 `Order`가 작은 Issue부터 실행한다.
+- 완료된 Issue는 다시 번호를 바꾸지 않는다. 새 작업은 남겨둔 간격에 삽입한다.
+- parent Issue는 Phase만 표시하고, 실행 가능한 work Issue에만 Order를 부여한다.
+
 ## 6. Label
 
 최소 label만 사용한다.
@@ -143,24 +160,31 @@ track:localtwin
 track:landmark
 track:portfolio
 
-type:feature
+type:implementation
 type:experiment
 type:evaluation
 type:research
 type:docs
-type:bug
+type:infra
+type:decision
 
 priority:p0
 priority:p1
 priority:p2
+priority:p3
 
-risk:security
-risk:data
+risk:public-write
 risk:cost
-needs:decision
+risk:privacy
+risk:fixture-leakage
+
+needs:user-action
 ```
 
 Phase와 Status는 Project field에 있으므로 label로 다시 만들지 않는다.
+
+- `type:decision`은 이 Issue의 최종 산출물이 Decision Record라는 영구 분류다.
+- `needs:user-action`은 권한 승인이나 자료 제공처럼 사용자의 행동을 기다리는 임시 label이며, 해결 즉시 제거한다. Project가 준비되면 동시에 `Status: Blocked`로 표시한다.
 
 ## 7. Issue 시작 조건
 
