@@ -93,11 +93,11 @@ docs/wiki/doc-viewer.html: document tree is missing docs/issues/industry-taxonom
 - `docs/research/GITHUB_TASK_TRACKING.md`: GitHub 공식 기능과 권장 구조 조사
 - `CURRENT_HANDOFF.md`: 현재 작업 상태
 
-Portfolio planning 폴더는 아직 Git repository가 아니다. 이 폴더에 공통 AEP runner를 구현하지 않는다. GitHub 전환 전에는 `tasks/BACKLOG.md`를 임시 source of truth로 사용한다. private repository, GitHub Project, Issue 생성이나 외부 push는 사용자의 별도 승인 없이는 하지 않는다.
+Portfolio planning은 공개 [agentic-engineering-portfolio](https://github.com/HyunKN/agentic-engineering-portfolio)의 `main`과 연결됐다. 이 repository에는 공통 AEP runner를 구현하지 않는다. GitHub Project와 초기 Issue 전환이 끝날 때까지 `tasks/BACKLOG.md`를 임시 source of truth로 사용한다.
 
 ## 6. 바로 다음 작업
 
-1. 사용자 승인 후 portfolio Git 저장소와 GitHub Project를 만들고 `FND-007`~`FND-010`을 완료한다.
+1. GitHub Project OAuth scope를 확보하고 `FND-009`를 완료한다.
 2. `LT-INF-001`로 `localtwin-aep`의 목표, 비목표, 학습 역량과 repository boundary를 고정한다.
 3. 새 LocalTwin AEP 저장소를 만들고 LT-01 starting state를 격리된 fixture로 동결한다.
 4. LT run metadata, retrieved context, Tool call, token, elapsed time, human intervention, patch와 evaluator result를 남기는 최소 runner를 만든다.

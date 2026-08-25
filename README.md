@@ -79,6 +79,7 @@ Foundation: Product Engineering + Python/PyTorch
 - [AI 역량 개발 계획](./docs/strategy/AI_SKILL_ROADMAP.md)
 - [AI Agent 채용 역량 조사](./docs/research/AI_AGENT_JOB_SKILLS.md)
 - [Master Backlog](./tasks/BACKLOG.md)
+- [GitHub 작업 Issues](https://github.com/HyunKN/agentic-engineering-portfolio/issues)
 - [GitHub 작업 관리 Workflow](./docs/project-management/TASK_WORKFLOW.md)
 - [GitHub task tracking 조사](./docs/research/GITHUB_TASK_TRACKING.md)
 
@@ -91,6 +92,6 @@ Foundation: Product Engineering + Python/PyTorch
 
 바로 다음 구현은 이 폴더 안에 공통 runner를 만드는 것이 아니다. 별도 `localtwin-aep` 저장소의 scope와 학습 목표를 먼저 고정하고, LT-01 starting state를 격리된 fixture로 동결한 뒤 LT 전용 최소 runner와 evaluator를 만든다. Landmark AEP는 LocalTwin 실험 설계가 안정된 다음 별도 저장소에서 시작한다.
 
-작업 진행은 [Master Backlog](./tasks/BACKLOG.md)의 ID와 체크리스트로 먼저 추적한다. GitHub 구성이 승인되면 하나의 user-level Project에서 여러 저장소의 Issue를 모아 보고, 각 저장소의 Milestone과 Issue를 실행 기준으로 전환한다.
+작업 진행은 [Master Backlog](./tasks/BACKLOG.md)의 ID와 체크리스트로 추적하고 있다. GitHub Project 권한 설정이 끝나면 하나의 user-level Project에서 여러 저장소의 Issue를 모아 보고, 각 저장소의 Milestone과 Issue를 실행 기준으로 전환한다.
 
 첫 LT pilot은 V0/V1A/V1B/V2의 우열을 결론 내리는 실험이 아니다. starting state, allowed/forbidden context, trace schema와 evaluator 실행 방식이 제대로 동작하는지만 확인한 뒤 LT Task와 schema를 한 번 수정한다.

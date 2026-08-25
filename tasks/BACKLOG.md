@@ -2,7 +2,10 @@
 
 기준일: 2026-08-25
 
-이 문서는 GitHub 저장소와 Project를 만들기 전의 초기 계획 snapshot이다. 작업 방법은 [AEP 작업 관리 Workflow](../docs/project-management/TASK_WORKFLOW.md)를 따른다.
+GitHub: [HyunKN/agentic-engineering-portfolio](https://github.com/HyunKN/agentic-engineering-portfolio)
+Issues: [전체 작업 Issue](https://github.com/HyunKN/agentic-engineering-portfolio/issues)
+
+이 문서는 GitHub Project 전환이 끝나기 전까지 사용하는 초기 계획 snapshot이다. 작업 방법은 [AEP 작업 관리 Workflow](../docs/project-management/TASK_WORKFLOW.md)를 따른다. Project 전환 후에는 GitHub Issue와 Project가 진행 상태의 source of truth가 된다.
 
 표기:
 
@@ -19,10 +22,10 @@
 - [x] `FND-004` AI Agent 채용 역량 조사와 skill roadmap 작성
 - [x] `FND-005` benchmark configuration, trace schema와 LT-01/LA-01 pilot 후보 정의
 - [x] `FND-006` GitHub Project·Issue 기반 작업 Workflow와 Issue Form 초안 작성
-- [ ] `FND-007` `agentic-engineering-portfolio` local Git 저장소 초기화와 첫 commit — 사용자 승인 필요
-- [ ] `FND-008` GitHub 원격 저장소와 cross-repository Project 생성 — 사용자 승인 필요
-- [ ] `FND-009` label, Project field, view와 automation 적용
-- [ ] `FND-010` 현재 backlog를 GitHub Issue와 parent/sub-issue로 변환
+- [x] `FND-007` `agentic-engineering-portfolio` local Git 저장소 초기화와 첫 commit
+- [x] `FND-008` GitHub 원격 저장소 연결과 공개 `main` 첫 push
+- [ ] `FND-009` cross-repository Project, label, field, view와 automation 적용
+- [x] `FND-010` 현재 backlog를 GitHub parent Issue와 실행 가능한 독립 Issue로 변환
 - [ ] `FND-011` AEP 명칭의 전체 이름과 외부 설명을 Decision Record로 확정
 
 M0 완료 기준:
@@ -219,10 +222,7 @@ M5 완료 기준:
 
 ## 현재 바로 시작할 Task
 
-GitHub 외부 생성 승인 전:
+현재 실행 항목:
 
-- 다음 실행 항목: `LT-INF-001` — `localtwin-aep` scope와 trust boundary 작성
-
-GitHub 외부 생성 승인 후:
-
-- 전환 순서: `FND-007`~`FND-010` — 이 backlog를 실제 Issue/Project로 전환
+- `FND-009` — GitHub Project 권한 확보 후 field, view와 automation 적용
+- `LT-INF-001` — `localtwin-aep` scope와 trust boundary 작성
