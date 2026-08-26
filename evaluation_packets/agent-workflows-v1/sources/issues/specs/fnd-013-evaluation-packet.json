@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "repository": "HyunKN/agentic-engineering-portfolio",
+  "issue_number": 11,
+  "parent_issue": 4,
+  "kind": "work",
+  "title": "[M0-015][FND-013] 외부 AI Evaluation Packet Workflow 구축",
+  "body": "## 목표\n\n외부 Web AI가 작업 결과를 비판적으로 검증할 수 있도록, 공개 가능한 source만 명시적으로 수집하고 provenance·제외 사유·SHA256 manifest를 포함한 Evaluation Packet을 생성한다.\n\n## 작업 범위\n\n- `issue_authoring`과 `evaluation_packet`을 같은 `agent_workflows` 상위 package에 배치한다.\n- 고정된 Git commit에서 allowlist source를 수집한다.\n- secret, 개인정보성 local path와 금지 경로를 fail-closed 방식으로 차단한다.\n- reviewer reading order, 질문, 알려진 공백과 제외 사유를 packet에 기록한다.\n- packet build 전 dry-run과 build 후 manifest verification을 제공한다.\n- 외부 AI review 원문과 finding triage의 저장 위치를 문서화한다.\n\n## 완료 기준\n\n- [ ] 두 workflow가 독립 module로 분리돼 있다.\n- [ ] Evaluation Packet을 dry-run, build, verify할 수 있다.\n- [ ] source file은 immutable commit에서 읽고 SHA256과 크기를 기록한다.\n- [ ] 민감정보가 감지되면 packet을 만들지 않는다.\n- [ ] 포함·제외 항목과 reviewer 질문이 manifest에 남는다.\n- [ ] 실제 example packet build와 regression test가 통과한다.\n\n## 검증 계획\n\n`python -m unittest discover -s tests -v`, example packet dry-run/build/verify와 `git diff --check`를 실행하고, 생성된 manifest의 commit·checksum·exclusion을 직접 확인한다.\n",
+  "labels": [
+    "track:foundation",
+    "type:implementation",
+    "priority:p0",
+    "risk:privacy"
+  ],
+  "milestone": "M0 - Foundation and task system"
+}

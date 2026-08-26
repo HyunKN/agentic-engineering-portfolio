@@ -41,11 +41,6 @@ evaluation_packets/
    ├─ PACKET_SPEC.json
    ├─ MANIFEST.json
    └─ sources/
-
-reviews/
-└─ <packet id>/
-   ├─ <provider>-<date>.md
-   └─ TRIAGE.md
 ```
 
 ## Module 1: `issue_authoring`

@@ -103,6 +103,8 @@ AI가 작성하는 Issue는 `agent_workflows.issue_authoring` module로 검증�
 
 외부 Web AI 검토 자료는 `agent_workflows.evaluation_packet` module로 만든다. 이 module은 고정 Git commit의 명시적 source allowlist만 복사하고 SHA256 manifest, 질문, 알려진 공백과 제외 사유를 기록한다. 두 module의 local path·secret pattern 검사는 `agent_workflows.publication_safety`가 공유한다. 이들은 portfolio 운영 자동화이며 LocalTwin/LA 전용 AEP runtime의 공통 Core가 아니다.
 
+첫 공개 packet `evaluation_packets/agent-workflows-v1`은 구현 commit `995579217a74e1878a158cd750e2dcde21563843`의 source 13개와 생성 문서 3개를 담고 있다. 총 17개 file(MANIFEST 포함)의 SHA256 검증이 통과했다. 외부 AI review는 아직 실행하지 않았으며 결과가 생기면 `reviews/agent-workflows-v1/`에 원문과 사람의 triage를 분리해 저장한다.
+
 ## 6. 바로 다음 작업
 
 1. GitHub Project OAuth scope를 확보하고 `FND-009`를 완료한다.

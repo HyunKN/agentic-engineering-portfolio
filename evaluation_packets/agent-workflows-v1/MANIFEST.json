@@ -1,0 +1,172 @@
+{
+  "exclusions": [
+    {
+      "item": "현재 Codex 대화 원문 전체",
+      "reason": "공개 동의되지 않은 내용과 로컬 환경 정보가 섞일 수 있어 승인된 요구사항과 artifact만 포함한다."
+    },
+    {
+      "item": "system/developer prompt와 private chain-of-thought",
+      "reason": "공개 평가 대상이 아니며 대신 결정, 대안, 변경과 검증 근거를 제공한다."
+    },
+    {
+      "item": "credential, cache와 로컬 작업 파일",
+      "reason": "재현에 필요하지 않고 민감정보를 포함할 수 있어 Git commit allowlist 밖에 둔다."
+    }
+  ],
+  "files": [
+    {
+      "bytes": 5124,
+      "category": "packet_spec",
+      "description": null,
+      "path": "PACKET_SPEC.json",
+      "sha256": "e5bf4ded477456d3e60851092d28e1100cd05de5a2c802637ba71ec0f1eb6b73",
+      "source_path": null
+    },
+    {
+      "bytes": 4367,
+      "category": "index",
+      "description": null,
+      "path": "README.md",
+      "sha256": "dc1870c73052e52df0c0af3f723146d712483ff516f0544ed589bf315a7355db",
+      "source_path": null
+    },
+    {
+      "bytes": 1922,
+      "category": "review_prompt",
+      "description": null,
+      "path": "REVIEW_PROMPT.md",
+      "sha256": "af52fff634f0af34460a22ae72e3f6a33badf026af74a9fc48db581b21e5562a",
+      "source_path": null
+    },
+    {
+      "bytes": 1959,
+      "category": "implementation",
+      "description": "Evaluation Packet command-line adapter",
+      "path": "sources/agent_workflows/evaluation_packet/cli.py",
+      "sha256": "1e5bb638bb1fcb27b701f94079f725431eef8d123b2d6891212d766285044c6c",
+      "source_path": "agent_workflows/evaluation_packet/cli.py"
+    },
+    {
+      "bytes": 21619,
+      "category": "implementation",
+      "description": "고정 commit source 수집, packet build와 manifest 검증 구현",
+      "path": "sources/agent_workflows/evaluation_packet/workflow.py",
+      "sha256": "7174bcd36c086ee3e9d0816ce7451134d15f4fe0fc7d603cde9b96885a34b02c",
+      "source_path": "agent_workflows/evaluation_packet/workflow.py"
+    },
+    {
+      "bytes": 1285,
+      "category": "implementation",
+      "description": "Issue workflow command-line adapter",
+      "path": "sources/agent_workflows/issue_authoring/cli.py",
+      "sha256": "581cf6b45c1ee6fb19937fc5b8ca177186036d1bf34ba9cd1922a7f6ed19f60d",
+      "source_path": "agent_workflows/issue_authoring/cli.py"
+    },
+    {
+      "bytes": 13910,
+      "category": "implementation",
+      "description": "Issue draft 검증과 GitHub publisher 구현",
+      "path": "sources/agent_workflows/issue_authoring/workflow.py",
+      "sha256": "89ad18f9ae56b593f80ecb63aa229bc59e9256cb35c3bf077bf48fb0487edfd8",
+      "source_path": "agent_workflows/issue_authoring/workflow.py"
+    },
+    {
+      "bytes": 1007,
+      "category": "implementation",
+      "description": "두 workflow가 공유하는 public text 안전 검사",
+      "path": "sources/agent_workflows/publication_safety.py",
+      "sha256": "ed5e5a5bafca94130c78ee0e5dadac2567df2f81f6839fe08252cb94734b9cce",
+      "source_path": "agent_workflows/publication_safety.py"
+    },
+    {
+      "bytes": 4228,
+      "category": "decision",
+      "description": "두 workflow와 shared policy의 책임 및 경계",
+      "path": "sources/docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md",
+      "sha256": "8ebce7358f1971b4ae209e30fdff41d2db06294ee4be7f63fae178124a4d661f",
+      "source_path": "docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md"
+    },
+    {
+      "bytes": 3584,
+      "category": "operation",
+      "description": "Evaluation Packet 생성·검증·외부 review 절차",
+      "path": "sources/docs/project-management/EVALUATION_PACKET_WORKFLOW.md",
+      "sha256": "2ccb8c2592692539bbceee51fa86f49d73c4220873aa99049f2add09b9d2667e",
+      "source_path": "docs/project-management/EVALUATION_PACKET_WORKFLOW.md"
+    },
+    {
+      "bytes": 3485,
+      "category": "operation",
+      "description": "Issue authoring 입력 contract와 실행 절차",
+      "path": "sources/docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md",
+      "sha256": "ba10bf615fbf82bca07f9accc07b7459e50a1daec19d83781b892bbb80f7a62d",
+      "source_path": "docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md"
+    },
+    {
+      "bytes": 2724,
+      "category": "decision",
+      "description": "공개 evidence와 제외 자료의 정책",
+      "path": "sources/governance/PUBLIC_EVIDENCE_POLICY.md",
+      "sha256": "728750c2a2d41d8db5e0465fc9ec49c92e8fa89d23d09270a521debec1aba83e",
+      "source_path": "governance/PUBLIC_EVIDENCE_POLICY.md"
+    },
+    {
+      "bytes": 1824,
+      "category": "context",
+      "description": "이 workflow 구현의 목표와 완료 기준을 기록한 Issue draft",
+      "path": "sources/issues/specs/fnd-013-evaluation-packet.json",
+      "sha256": "3ce7431e31cf13d621ee720c5a01ac2dd75dc9ab2ff38ffb8683467a3e8e837f",
+      "source_path": "issues/specs/fnd-013-evaluation-packet.json"
+    },
+    {
+      "bytes": 6410,
+      "category": "test",
+      "description": "packet build, privacy 차단, 변조 탐지와 immutability test",
+      "path": "sources/tests/test_evaluation_packet.py",
+      "sha256": "06f24678c4cfde2ea793758e0fa87b07ee5804c640a86b3314b899a71085de2f",
+      "source_path": "tests/test_evaluation_packet.py"
+    },
+    {
+      "bytes": 6073,
+      "category": "test",
+      "description": "Issue validation과 GitHub round-trip regression test",
+      "path": "sources/tests/test_issue_authoring.py",
+      "sha256": "2e0eeaaa90bca23d2c9faaab290bff3b424c5ccdff5a1f86f61df01bdf0e221e",
+      "source_path": "tests/test_issue_authoring.py"
+    },
+    {
+      "bytes": 930,
+      "category": "test",
+      "description": "공통 안전 검사와 self-scan regression test",
+      "path": "sources/tests/test_publication_safety.py",
+      "sha256": "7140ba67542ef231c07afd1fe2991302712fd454198414b491e4f06659313d3f",
+      "source_path": "tests/test_publication_safety.py"
+    }
+  ],
+  "known_gaps": [
+    "외부 Web AI provider 호출, review 원문 import와 finding triage는 아직 자동화하지 않았다.",
+    "secret 검사는 제한된 high-risk pattern만 다루며 human privacy review를 대체하지 않는다.",
+    "Issue create의 idempotency와 여러 Issue apply 도중 부분 실패 복구는 아직 구현하지 않았다.",
+    "GitHub Project OAuth scope가 없어 Project field와 view 동기화는 아직 검증하지 못했다."
+  ],
+  "packet_id": "agent-workflows-v1",
+  "references": [
+    {
+      "label": "Issue 작성 workflow Issue #10",
+      "url": "https://github.com/HyunKN/agentic-engineering-portfolio/issues/10"
+    },
+    {
+      "label": "Evaluation Packet workflow Issue #11",
+      "url": "https://github.com/HyunKN/agentic-engineering-portfolio/issues/11"
+    },
+    {
+      "label": "평가 대상 구현 commit",
+      "url": "https://github.com/HyunKN/agentic-engineering-portfolio/commit/995579217a74e1878a158cd750e2dcde21563843"
+    }
+  ],
+  "repository_url": "https://github.com/HyunKN/agentic-engineering-portfolio",
+  "schema_version": 1,
+  "source_commit": "995579217a74e1878a158cd750e2dcde21563843",
+  "spec_sha256": "e5bf4ded477456d3e60851092d28e1100cd05de5a2c802637ba71ec0f1eb6b73",
+  "title": "Agent Workflows v1 외부 비판 검토"
+}
