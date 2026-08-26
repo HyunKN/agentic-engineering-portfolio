@@ -25,6 +25,8 @@ Implementation은 다음을 숨긴다.
 - local machine path와 대표적인 secret pattern 차단
 - update/create body를 shell argument가 아닌 `--body-file -` stdin으로 전달
 - 게시 후 title, body, Milestone과 label round-trip 검증
+- 이미 같은 parent에 연결된 draft를 다시 apply하면 duplicate parent 응답만 idempotent success로 처리
+- permission 등 다른 parent 연결 오류는 숨기지 않고 실패
 
 ## Workflow
 

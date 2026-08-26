@@ -125,12 +125,17 @@ class DraftTestCase(unittest.TestCase):
 
 
 class FakeRunner:
-    def __init__(self, remote: dict[str, object]) -> None:
+    def __init__(
+        self, remote: dict[str, object], *, parent_error: str | None = None
+    ) -> None:
         self.remote = remote
+        self.parent_error = parent_error
         self.calls: list[tuple[list[str], str | None]] = []
 
     def __call__(self, args, *, input, text, capture_output, check):
         self.calls.append((list(args), input))
+        if "--parent" in args and self.parent_error is not None:
+            return subprocess.CompletedProcess(args, 1, "", self.parent_error)
         if args[1:3] == ["issue", "view"]:
             output = json.dumps(self.remote, ensure_ascii=False)
         else:
@@ -149,14 +154,7 @@ class PublisherTestCase(unittest.TestCase):
 
     def test_publisher_uses_stdin_body_file_and_verifies_round_trip(self) -> None:
         draft = self.prepare()
-        runner = FakeRunner(
-            {
-                "title": draft.title,
-                "body": draft.body,
-                "milestone": {"title": draft.milestone},
-                "labels": [{"name": label} for label in draft.labels],
-            }
-        )
+        runner = FakeRunner(self.remote_for(draft))
 
         url = GithubPublisher(runner=runner).publish(draft)
 
@@ -171,6 +169,38 @@ class PublisherTestCase(unittest.TestCase):
         self.assertEqual(draft.body, edit_body)
         self.assertEqual(["gh", "issue", "edit"], runner.calls[1][0][:3])
         self.assertIn("--parent", runner.calls[1][0])
+
+    def remote_for(self, draft) -> dict[str, object]:
+        return {
+            "title": draft.title,
+            "body": draft.body,
+            "milestone": {"title": draft.milestone},
+            "labels": [{"name": label} for label in draft.labels],
+        }
+
+    def test_duplicate_parent_is_an_idempotent_success(self) -> None:
+        draft = self.prepare()
+        runner = FakeRunner(
+            self.remote_for(draft),
+            parent_error=(
+                "GraphQL: Failed to add sub-issue. "
+                "Issue may not contain duplicate sub-issues (addSubIssue)"
+            ),
+        )
+
+        url = GithubPublisher(runner=runner).publish(draft)
+
+        self.assertTrue(url.endswith("/issues/10"))
+        self.assertEqual(["gh", "issue", "view"], runner.calls[2][0][:3])
+
+    def test_unrelated_parent_error_is_not_suppressed(self) -> None:
+        draft = self.prepare()
+        runner = FakeRunner(
+            self.remote_for(draft), parent_error="GraphQL: permission denied"
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "permission denied"):
+            GithubPublisher(runner=runner).publish(draft)
 
 
 if __name__ == "__main__":

@@ -264,6 +264,7 @@ def render_preview(drafts: Sequence[IssueDraft]) -> str:
 
 
 Runner = Callable[..., subprocess.CompletedProcess[str]]
+DUPLICATE_PARENT_ERROR = "Issue may not contain duplicate sub-issues"
 
 
 class GithubPublisher:
@@ -339,18 +340,22 @@ class GithubPublisher:
             url = f"https://github.com/{draft.repository}/issues/{issue_number}"
 
         if draft.parent_issue is not None:
-            self._run(
-                [
-                    "gh",
-                    "issue",
-                    "edit",
-                    str(issue_number),
-                    "--repo",
-                    draft.repository,
-                    "--parent",
-                    str(draft.parent_issue),
-                ]
-            )
+            try:
+                self._run(
+                    [
+                        "gh",
+                        "issue",
+                        "edit",
+                        str(issue_number),
+                        "--repo",
+                        draft.repository,
+                        "--parent",
+                        str(draft.parent_issue),
+                    ]
+                )
+            except RuntimeError as error:
+                if DUPLICATE_PARENT_ERROR not in str(error):
+                    raise
 
         self._verify_round_trip(draft, issue_number)
         return url
