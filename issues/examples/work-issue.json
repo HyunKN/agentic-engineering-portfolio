@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "repository": "HyunKN/agentic-engineering-portfolio",
+  "kind": "work",
+  "title": "[M5-010][PF-001] LocalTwin AEP Case Study 초안 작성",
+  "body": "## 목표\n\nLocalTwin의 기존 개발 방식과 AEP 적용 결과를 검증 가능한 Case Study로 정리한다.\n\n## 작업 범위\n\n- baseline과 AEP configuration을 분리한다.\n- trace, evaluator와 metric artifact를 연결한다.\n\n## 완료 기준\n\n- [ ] 검증된 주장과 미검증 주장이 분리돼 있다.\n- [ ] 재현 절차와 failure evidence가 연결돼 있다.\n\n## 검증 계획\n\nCase Study의 모든 수치와 기술 주장을 source artifact에 역추적한다.\n",
+  "labels": [
+    "track:portfolio",
+    "type:docs",
+    "priority:p1"
+  ],
+  "milestone": "M5 - Portfolio synthesis",
+  "parent_issue": 9
+}

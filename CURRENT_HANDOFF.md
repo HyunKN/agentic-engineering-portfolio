@@ -91,9 +91,12 @@ docs/wiki/doc-viewer.html: document tree is missing docs/issues/industry-taxonom
 - `tasks/BACKLOG.md`: 전체 작업 ID, 상태, 선후관계와 체크리스트
 - `docs/project-management/TASK_WORKFLOW.md`: GitHub Project·Issue·Milestone 운영 규칙
 - `docs/research/GITHUB_TASK_TRACKING.md`: GitHub 공식 기능과 권장 구조 조사
+- `docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md`: AI Issue JSON draft, validation, preview와 apply 절차
 - `CURRENT_HANDOFF.md`: 현재 작업 상태
 
 Portfolio planning은 공개 [agentic-engineering-portfolio](https://github.com/HyunKN/agentic-engineering-portfolio)의 `main`과 연결됐다. 이 repository에는 공통 AEP runner를 구현하지 않는다. GitHub Project와 초기 Issue 전환이 끝날 때까지 `tasks/BACKLOG.md`를 임시 source of truth로 사용한다.
+
+AI가 작성하는 Issue는 `tools.issue_authoring` module로 검증한다. 2026-08-27에 이 workflow를 이용해 parent Issue `#4`~`#9`의 손상된 줄바꿈을 복구했고 GitHub round-trip을 확인했다.
 
 ## 6. 바로 다음 작업
 

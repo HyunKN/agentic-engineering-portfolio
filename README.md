@@ -81,6 +81,7 @@ Foundation: Product Engineering + Python/PyTorch
 - [Master Backlog](./tasks/BACKLOG.md)
 - [GitHub 작업 Issues](https://github.com/HyunKN/agentic-engineering-portfolio/issues)
 - [GitHub 작업 관리 Workflow](./docs/project-management/TASK_WORKFLOW.md)
+- [AI Issue 작성·검증 Workflow](./docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md)
 - [GitHub task tracking 조사](./docs/research/GITHUB_TASK_TRACKING.md)
 
 ## 바로 다음 작업

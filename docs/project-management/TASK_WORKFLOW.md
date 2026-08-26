@@ -20,6 +20,7 @@ GitHub Project
 - 하나의 Issue는 하나의 검증 가능한 결과만 가진다.
 - 구현 전에 Issue의 goal, scope, acceptance criteria와 verification을 먼저 고정한다.
 - 모든 세부 행동을 별도 Issue로 만들지 않는다. 같은 결과를 위한 구현·test·문서 갱신은 Issue checklist로 둔다.
+- AI가 작성하는 Issue는 [AI Issue 작성·검증 Workflow](./ISSUE_AUTHORING_AI_WORKFLOW.md)의 JSON draft, dry-run과 human review를 통과한 뒤 게시한다.
 
 `portfolio` 폴더와 공개 GitHub 저장소는 연결됐다. Project와 초기 Issue 전환이 끝날 때까지 [Master Backlog](../../tasks/BACKLOG.md)를 임시 source of truth로 사용한다. 전환 후에는 Issue와 Project가 진행 상태의 source of truth가 되고, 이 backlog는 초기 계획 snapshot 역할만 한다.
 
