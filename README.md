@@ -82,6 +82,9 @@ Foundation: Product Engineering + Python/PyTorch
 - [GitHub 작업 Issues](https://github.com/HyunKN/agentic-engineering-portfolio/issues)
 - [GitHub 작업 관리 Workflow](./docs/project-management/TASK_WORKFLOW.md)
 - [AI Issue 작성·검증 Workflow](./docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md)
+- [Agent Workflows 구조](./docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md)
+- [External AI Evaluation Packet Workflow](./docs/project-management/EVALUATION_PACKET_WORKFLOW.md)
+- [Public Evidence Policy](./governance/PUBLIC_EVIDENCE_POLICY.md)
 - [GitHub task tracking 조사](./docs/research/GITHUB_TASK_TRACKING.md)
 
 ## 바로 다음 작업

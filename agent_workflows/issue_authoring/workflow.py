@@ -1,4 +1,4 @@
-"""Validate, preview, and publish AI-authored GitHub Issue drafts."""
+"""Implementation for validated AI-authored GitHub Issue drafts."""
 
 from __future__ import annotations
 
@@ -9,6 +9,8 @@ import re
 import subprocess
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
+from agent_workflows.publication_safety import find_publication_risks
+
 
 TITLE_PARENT_RE = re.compile(r"^\[(M[0-5])\]\s+(.+)$")
 TITLE_WORK_RE = re.compile(
@@ -17,17 +19,6 @@ TITLE_WORK_RE = re.compile(
 HANGUL_RE = re.compile(r"[가-힣]")
 CHECKBOX_RE = re.compile(r"- \[[ xX]\]")
 REPOSITORY_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
-LOCAL_PATH_RE = re.compile(
-    r"(?:[A-Za-z]:\\Users\\|/C:/Users/|AppData[\\/]|Local[\\/]Temp)",
-    re.IGNORECASE,
-)
-SECRET_PATTERNS = (
-    re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
-    re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
-    re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b"),
-    re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
-)
-
 ALLOWED_LABELS = frozenset(
     {
         "track:foundation",
@@ -197,10 +188,7 @@ def _validate_mapping(data: Mapping[str, Any], source: Path) -> IssueDraft:
             break
 
     public_text = f"{title}\n{body}"
-    if LOCAL_PATH_RE.search(public_text):
-        errors.append("draft contains a local machine path")
-    if any(pattern.search(public_text) for pattern in SECRET_PATTERNS):
-        errors.append("draft contains a high-risk secret pattern")
+    errors.extend(f"draft {risk}" for risk in find_publication_risks(public_text))
 
     label_values = tuple(labels)
     if len(label_values) != len(set(label_values)):

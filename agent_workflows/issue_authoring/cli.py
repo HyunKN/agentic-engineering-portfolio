@@ -1,4 +1,4 @@
-"""Command-line interface for the validated Issue authoring workflow."""
+"""CLI adapter for the validated Issue authoring module."""
 
 from __future__ import annotations
 

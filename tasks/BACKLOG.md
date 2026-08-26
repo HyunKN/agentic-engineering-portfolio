@@ -26,6 +26,7 @@ Issues: [전체 작업 Issue](https://github.com/HyunKN/agentic-engineering-port
 - [x] `FND-008` GitHub 원격 저장소 연결과 공개 `main` 첫 push
 - [x] `FND-010` 현재 backlog를 GitHub parent Issue와 실행 가능한 독립 Issue로 변환
 - [x] `FND-012` AI Issue 작성·검증 Workflow 구축과 parent Issue 줄바꿈 복구 ([#10](https://github.com/HyunKN/agentic-engineering-portfolio/issues/10))
+- [ ] `FND-013` 외부 AI Evaluation Packet Workflow 구축과 첫 공개 packet 검증 ([#11](https://github.com/HyunKN/agentic-engineering-portfolio/issues/11))
 - [ ] `FND-009` cross-repository Project, label, field, view와 automation 적용
 - [ ] `FND-011` AEP 명칭의 전체 이름과 외부 설명을 Decision Record로 확정
 

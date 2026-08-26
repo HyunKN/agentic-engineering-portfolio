@@ -10,10 +10,10 @@ AI가 자유 형식 Markdown을 바로 `gh issue create/edit`에 넘기지 않�
 
 ```powershell
 # Validate + preview only. GitHub를 변경하지 않는다.
-python -m tools.issue_authoring.cli issues/examples/work-issue.json
+python -m agent_workflows.issue_authoring.cli issues/examples/work-issue.json
 
 # 모든 draft가 먼저 검증된 경우에만 GitHub에 적용한다.
-python -m tools.issue_authoring.cli path/to/draft.json --apply
+python -m agent_workflows.issue_authoring.cli path/to/draft.json --apply
 ```
 
 Implementation은 다음을 숨긴다.
@@ -92,6 +92,6 @@ example은 [work-issue.json](../../issues/examples/work-issue.json)에 있다.
 
 ```powershell
 python -m unittest discover -s tests -v
-python -m tools.issue_authoring.cli issues/examples/work-issue.json
+python -m agent_workflows.issue_authoring.cli issues/examples/work-issue.json
 git diff --check
 ```

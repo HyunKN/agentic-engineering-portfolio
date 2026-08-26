@@ -1,4 +1,4 @@
-"""Validated GitHub Issue authoring workflow."""
+"""Validated GitHub Issue authoring module."""
 
 from .workflow import (
     DraftValidationError,

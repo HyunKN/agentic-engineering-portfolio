@@ -92,11 +92,16 @@ docs/wiki/doc-viewer.html: document tree is missing docs/issues/industry-taxonom
 - `docs/project-management/TASK_WORKFLOW.md`: GitHub Project·Issue·Milestone 운영 규칙
 - `docs/research/GITHUB_TASK_TRACKING.md`: GitHub 공식 기능과 권장 구조 조사
 - `docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md`: AI Issue JSON draft, validation, preview와 apply 절차
+- `docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md`: portfolio 운영용 workflow module의 경계와 구조
+- `docs/project-management/EVALUATION_PACKET_WORKFLOW.md`: 외부 Web AI 검토용 immutable evidence packet 절차
+- `governance/PUBLIC_EVIDENCE_POLICY.md`: 공개할 evidence와 제외할 민감정보 기준
 - `CURRENT_HANDOFF.md`: 현재 작업 상태
 
 Portfolio planning은 공개 [agentic-engineering-portfolio](https://github.com/HyunKN/agentic-engineering-portfolio)의 `main`과 연결됐다. 이 repository에는 공통 AEP runner를 구현하지 않는다. GitHub Project와 초기 Issue 전환이 끝날 때까지 `tasks/BACKLOG.md`를 임시 source of truth로 사용한다.
 
-AI가 작성하는 Issue는 `tools.issue_authoring` module로 검증한다. 2026-08-27에 이 workflow를 이용해 parent Issue `#4`~`#9`의 손상된 줄바꿈을 복구했고 GitHub round-trip을 확인했다.
+AI가 작성하는 Issue는 `agent_workflows.issue_authoring` module로 검증한다. 2026-08-27에 이 workflow를 이용해 parent Issue `#4`~`#9`의 손상된 줄바꿈을 복구했고 GitHub round-trip을 확인했다.
+
+외부 Web AI 검토 자료는 `agent_workflows.evaluation_packet` module로 만든다. 이 module은 고정 Git commit의 명시적 source allowlist만 복사하고 SHA256 manifest, 질문, 알려진 공백과 제외 사유를 기록한다. 두 module의 local path·secret pattern 검사는 `agent_workflows.publication_safety`가 공유한다. 이들은 portfolio 운영 자동화이며 LocalTwin/LA 전용 AEP runtime의 공통 Core가 아니다.
 
 ## 6. 바로 다음 작업
 

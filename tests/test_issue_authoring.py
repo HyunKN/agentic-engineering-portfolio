@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 import unittest
 
-from tools.issue_authoring import (
+from agent_workflows.issue_authoring import (
     DraftValidationError,
     GithubPublisher,
     prepare_drafts,
@@ -106,8 +106,9 @@ class DraftTestCase(unittest.TestCase):
 
     def test_rejects_local_machine_path(self) -> None:
         payload = valid_work_draft()
+        local_path = "C:" + r"\Users\hi\secret"
         payload["body"] = str(payload["body"]).replace(
-            "안전한 Issue", r"C:\Users\hi\secret에서 Issue"
+            "안전한 Issue", f"{local_path}에서 Issue"
         )
 
         with self.assertRaisesRegex(DraftValidationError, "local machine path"):

@@ -32,5 +32,5 @@ milestone: exact GitHub milestone title
 초안을 만든 뒤 다음 검증 명령이 통과하기 전에는 게시를 제안하지 않는다.
 
 ```powershell
-python -m tools.issue_authoring.cli <draft.json>
+python -m agent_workflows.issue_authoring.cli <draft.json>
 ```
