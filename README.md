@@ -85,7 +85,8 @@ Foundation: Product Engineering + Python/PyTorch
 - [Agent Workflows 구조](./docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md)
 - [External AI Evaluation Packet Workflow](./docs/project-management/EVALUATION_PACKET_WORKFLOW.md)
 - [Public Evidence Policy](./governance/PUBLIC_EVIDENCE_POLICY.md)
-- [첫 공개 Evaluation Packet](./evaluation_packets/agent-workflows-v1/README.md)
+- [최신 공개 Evaluation Packet v2](./evaluation_packets/agent-workflows-v2/README.md)
+- [역사적 Evaluation Packet v1](./evaluation_packets/agent-workflows-v1/README.md)
 - [외부 AI Review 저장·판정 규칙](./reviews/README.md)
 - [GitHub task tracking 조사](./docs/research/GITHUB_TASK_TRACKING.md)
 

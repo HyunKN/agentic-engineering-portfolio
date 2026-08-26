@@ -1,0 +1,61 @@
+# Agent Workflows v2 외부 비판 검토
+
+## 평가 범위
+
+Issue 작성·게시 workflow와 외부 AI 검토 자료 생성 workflow의 module 경계, 안전성, 재현 가능성과 검증 근거를 평가한다. v1 생성 후 발견된 duplicate parent 재실행 결함의 수정도 포함한다.
+
+- Source repository: https://github.com/HyunKN/agentic-engineering-portfolio
+- Immutable source commit: [`a9ff6f56d1f1b8e3a847836417b27c66a9eb79c2`](https://github.com/HyunKN/agentic-engineering-portfolio/commit/a9ff6f56d1f1b8e3a847836417b27c66a9eb79c2)
+- Packet ID: `agent-workflows-v2`
+
+## 읽는 순서
+
+1. `REVIEW_PROMPT.md`
+2. `PACKET_SPEC.json`
+3. 아래 source snapshot
+4. `MANIFEST.json`의 checksum과 제외 항목
+
+1. `docs/project-management/AGENT_WORKFLOWS_ARCHITECTURE.md` — decision: 두 workflow와 shared policy의 책임 및 경계
+2. `governance/PUBLIC_EVIDENCE_POLICY.md` — decision: 공개 evidence와 제외 자료의 정책
+3. `docs/project-management/ISSUE_AUTHORING_AI_WORKFLOW.md` — operation: Issue authoring 입력 contract와 idempotent parent 처리 절차
+4. `docs/project-management/EVALUATION_PACKET_WORKFLOW.md` — operation: Evaluation Packet 생성·검증·외부 review 절차
+5. `agent_workflows/publication_safety.py` — implementation: 두 workflow가 공유하는 public text 안전 검사
+6. `agent_workflows/issue_authoring/workflow.py` — implementation: Issue draft 검증, idempotent parent 처리와 GitHub publisher 구현
+7. `agent_workflows/issue_authoring/cli.py` — implementation: Issue workflow command-line adapter
+8. `agent_workflows/evaluation_packet/workflow.py` — implementation: 고정 commit source 수집, packet build와 manifest 검증 구현
+9. `agent_workflows/evaluation_packet/cli.py` — implementation: Evaluation Packet command-line adapter
+10. `tests/test_publication_safety.py` — test: 공통 안전 검사와 self-scan regression test
+11. `tests/test_issue_authoring.py` — test: Issue validation, parent 재적용과 GitHub round-trip regression test
+12. `tests/test_evaluation_packet.py` — test: packet build, privacy 차단, 변조 탐지와 immutability test
+13. `issues/specs/fnd-013-evaluation-packet.json` — context: 이 workflow 구현의 목표와 완료 기준을 기록한 Issue draft
+
+## 외부 참조
+
+- [Issue 작성 workflow Issue #10](https://github.com/HyunKN/agentic-engineering-portfolio/issues/10)
+- [Evaluation Packet workflow Issue #11](https://github.com/HyunKN/agentic-engineering-portfolio/issues/11)
+- [v1 구현 commit](https://github.com/HyunKN/agentic-engineering-portfolio/commit/995579217a74e1878a158cd750e2dcde21563843)
+- [duplicate parent 재실행 수정 commit](https://github.com/HyunKN/agentic-engineering-portfolio/commit/a9ff6f56d1f1b8e3a847836417b27c66a9eb79c2)
+
+## 검토 질문
+
+- 두 workflow의 책임과 shared publication_safety 경계가 과도한 공통화 없이 명확한가?
+- Issue authoring의 validation, 명시적 apply, duplicate parent 재실행 처리와 GitHub round-trip 검증이 실제 실패 조건을 충분히 다루는가?
+- Evaluation Packet의 allowlist, 고정 commit, SHA256 manifest와 overwrite 거부가 재현성과 변조 탐지에 충분한가?
+- 공개 evidence 정책과 자동 검사가 secret, 개인정보와 숨겨진 지시의 유출 위험을 적절히 제한하는가?
+- unit test가 중요한 failure mode를 검증하며 아직 빠진 high-risk test는 무엇인가?
+- 현재 범위에서 불필요한 추상화 또는 반대로 분리해야 할 결합은 무엇인가?
+
+## 알려진 공백
+
+- 외부 Web AI provider 호출, review 원문 import와 finding triage는 아직 자동화하지 않았다.
+- secret 검사는 제한된 high-risk pattern만 다루며 human privacy review를 대체하지 않는다.
+- Issue create의 idempotency와 여러 Issue apply 도중 부분 실패 복구는 아직 구현하지 않았다.
+- GitHub Project OAuth scope가 없어 Project field와 view 동기화는 아직 검증하지 못했다.
+
+## 의도적으로 제외한 항목
+
+- **현재 Codex 대화 원문 전체**: 공개 동의되지 않은 내용과 로컬 환경 정보가 섞일 수 있어 승인된 요구사항과 artifact만 포함한다.
+- **system/developer prompt와 private chain-of-thought**: 공개 평가 대상이 아니며 대신 결정, 대안, 변경과 검증 근거를 제공한다.
+- **credential, cache와 로컬 작업 파일**: 재현에 필요하지 않고 민감정보를 포함할 수 있어 Git commit allowlist 밖에 둔다.
+
+이 packet은 명시적 allowlist에 포함된 UTF-8 text만 담는다. 제외는 누락으로 숨기지 않고 위 목록과 manifest에 사유를 남긴다.
